@@ -44,8 +44,8 @@ module FilesystemResizeCookbook
         Chef::Log.warn("#{self.class}: resize2fs already running, skipping")
         return false
       end
-      shell_out("e2fsck -f -y '#{@device.delete("'")}'")
-      shell_out("resize2fs '#{@device.delete("'")}'").status.success?
+      shell_out("e2fsck -f -y '#{@device.delete("'")}'", :timeout => 1800)
+      shell_out("resize2fs '#{@device.delete("'")}'", :timeout => 1800).status.success?
     end
   end
 end
